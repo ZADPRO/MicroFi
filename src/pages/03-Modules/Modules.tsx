@@ -1,9 +1,9 @@
 import React from "react";
 import "./Modules.css";
 
-import centerImage from "../../assets/modules/booking.png";
-import leftImage from "../../assets/modules/settings.png";
-import rightImage from "../../assets/modules/upload.png";
+import centerImage from "../../assets/modules/moduleOneCentere.png";
+import leftImage from "../../assets/modules/mobileOne.png";
+import rightImage from "../../assets/modules/mobileTwo.png";
 
 // import Module001 from "../../assets/modules/001.jpg";
 
@@ -16,41 +16,45 @@ const Modules: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto mt-10 p-4">
-        <p className="text-center text-2xl uppercase underline font-bold">
-          Powerful Features Tailored for Courier and Microfinance Businesses
+      <div className="max-w-6xl mx-auto mt-10 px-4">
+        <p className="text-center text-2xl md:text-3xl uppercase underline font-bold">
+          Empower Your Microfinance Operations with us{" "}
         </p>
-        <div className="relative w-full h-[600px] mt-10">
+
+        <div className="relative w-full mt-10 h-[600px] md:h-[500px]">
+          {/* Center Laptop Image */}
           <img
             src={centerImage}
             alt="Center Module"
-            className="w-[65%] mx-auto z-0 relative shadow-2xl rounded-xl transition duration-500 ease-in-out hover:scale-105"
+            className="w-[65%] mx-auto z-0 relative shadow-2xl rounded-xl transition-transform duration-500 ease-in-out hover:scale-105"
           />
 
+          {/* Left Mobile Image */}
           <img
             src={leftImage}
             alt="Left Module"
-            className="w-[40%] absolute top-[280px] left-0 z-10 shadow-xl rounded-xl transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl"
+            className="hidden md:block w-[18%] absolute top-[25%] left-[5%] z-10 shadow-xl rounded-xl transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-2xl"
           />
 
+          {/* Right Mobile Image */}
           <img
             src={rightImage}
             alt="Right Module"
-            className="w-[40%] absolute top-[200px] right-0 z-10 shadow-xl rounded-xl transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl"
+            className="hidden md:block w-[18%] absolute top-[20%] right-[5%] z-10 shadow-xl rounded-xl transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-2xl"
           />
         </div>
       </div>
 
-      <div className="bg-gray-100  py-10 mt-10">
+      <div className="bg-gray-100 py-10 mt-30">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 text-center gap-8">
           {[
-            { label: "Active Employees", value: "120+" },
-            { label: "Parcel Bookings", value: "15K+" },
-            { label: "Finance Records", value: "200K+" },
-            { label: "Reports Generated", value: "5K+" },
+            { label: "Active Borrowers", value: "2.5K+" },
+            { label: "Loans Disbursed", value: "10K+" },
+            { label: "EMIs Collected", value: "50K+" },
+            { label: "Reports Generated", value: "8K+" },
           ].map((stat, idx) => (
             <div key={idx}>
-              <div className="text-3xl font-bold text-[#fca000]">
+              <div className="text-3xl font-bold text-[#090a58]">
                 {stat.value}
               </div>
               <div className="text-gray-600">{stat.label}</div>
@@ -65,50 +69,67 @@ const Modules: React.FC = () => {
             ERP Modules Overview
           </h2>
           <p className="text-lg text-gray-700 mb-10">
-            Our ERP system is designed to streamline courier & microfinance
-            operations. Here’s a breakdown of each powerful module.
+            Each module is meticulously designed to manage a core function of
+            your microfinance operations. Together, they offer a powerful,
+            end-to-end solution that simplifies workflows, reduces errors, and
+            improves overall productivity.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Role-Based Dashboard",
-                desc: "Empower your team with tailored dashboards. Super Admin, Admin, Finance, and Employees each get access to what they need — and nothing they don't.",
-                icon: "👤",
-              },
-              {
-                title: "Parcel Booking",
-                desc: "Book parcels with leading courier partners in just a few clicks. Choose document/non-document types, walk-in vs regular users, and auto-fill sender/receiver details.",
-                icon: "📦",
-              },
-              {
-                title: "Bulk Upload",
-                desc: "Upload bulk orders using Excel. Automatically detects duplicates before submission and saves hours of manual entry.",
-                icon: "📂",
-              },
-              {
-                title: "Transaction Mapping",
-                desc: "Map vendor purchases by uploading leaves. Prevents duplicates and ensures traceable transaction history for compliance and audit.",
-                icon: "🧾",
-              },
-              {
-                title: "Finance Tracking",
-                desc: "Split leaves into subcategories, generate reports, and export them for internal or client reviews.",
-                icon: "💳",
-              },
-              {
-                title: "Employee Management",
-                desc: "Onboard employees with ease. Assign roles, email credentials, and track onboarding progress in one place.",
-                icon: "🧑‍💼",
-              },
-              {
-                title: "Reports & Analytics",
-                desc: "Split leaves into subcategories, generate reports, and export them for internal or client reviews.",
+                title: "Admin Dashboard",
+                desc: "View real-time financial summaries including loan status, repayments, customer activity, and agent performance—all from one central control panel.",
                 icon: "📊",
               },
               {
-                title: "Custom Settings",
-                desc: "Configure pricing, categories, and courier partners per your business model. Fully customizable for operational flexibility.",
+                title: "Agent Management",
+                desc: "Add, edit, and monitor agents with detailed profiles and KYC. Assign customers and track field collections in real-time.",
+                icon: "🧑‍💼",
+              },
+              {
+                title: "Customer Management",
+                desc: "Register customers, assign loans, add references, and manage repayment history. Maintain complete visibility over user activity and audit logs.",
+                icon: "👥",
+              },
+              {
+                title: "Bank Details",
+                desc: "Maintain accurate records of all cash and bank transactions. Add new bank accounts and manage cash flow with transparency.",
+                icon: "🏦",
+              },
+              {
+                title: "Funds Management",
+                desc: "Track fund additions and internal transfers between cash and bank accounts. Filter transactions by date for clean, auditable records.",
+                icon: "💰",
+              },
+              {
+                title: "Loan Products",
+                desc: "Create flexible loan schemes with custom interest rates, durations (daily/weekly/monthly), and calculation methods (day-wise/month-wise).",
+                icon: "📦",
+              },
+              {
+                title: "Loan Management",
+                desc: "Disburse loans, schedule repayments, send reminders, and track loan performance with options for flat, diminishing, or interest-only plans.",
+                icon: "📄",
+              },
+              {
+                title: "Repayment Tracking",
+                desc: "Record EMIs, manage pending dues, send reminders, and audit repayment history. Add follow-ups and log user-provided notes.",
+                icon: "💳",
+              },
+              {
+                title: "Admin Loan",
+                desc: "Track loans borrowed by the organization. Add repayment records, follow-up logs, and access full loan audit trails for compliance.",
+                icon: "🏢",
+              },
+              {
+                title: "Reports",
+                desc: "Generate and export overall, monthly, and expense reports. Track collections, disbursements, and expenditures in a single dashboard.",
+                icon: "📈",
+              },
+              {
+                title: "Customization",
+                desc: "Customize ID formats, area-pincode mappings, and visible data filters. Tailor the platform to align with your operational structure.",
                 icon: "⚙️",
               },
             ].map((mod, index) => (

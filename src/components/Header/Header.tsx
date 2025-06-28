@@ -43,7 +43,7 @@ const Header: React.FC = () => {
                   ZAdPro{" "}
                 </span>
                 <span className="text-[#fca000] lg:text-[22px] text-[12px]">
-                  Express Logistics
+                  Micro-Fi
                 </span>
               </h2>
             </div>
