@@ -1,53 +1,53 @@
 import React from "react";
 import {
-  Truck,
-  MapPin,
-  ShieldCheck,
   CreditCard,
-  FileUp,
-  BarChart2,
+  Users,
+  Banknote,
+  FileText,
+  ClipboardList,
+  Building2,
 } from "lucide-react";
 import ERP from "../../assets/home/ERP.jpg";
 import "./Home.css";
 
 const features = [
   {
-    title: "Unified Courier Booking",
-    desc: "Easily book parcels through major partners like DTDC, Delhivery, BlueDart — all from one place.",
-    icon: <Truck className="w-7 h-7 text-[#fca000]" />,
+    title: "Loan Management",
+    desc: "Create, disburse, and monitor loans with real-time EMI tracking, interest calculation, and flexible repayment options.",
+    icon: <FileText className="w-7 h-7 text-[#fca000]" />,
   },
   {
-    title: "Real-Time Parcel Tracking",
-    desc: "Track consignments live with integrated APIs — no manual work.",
-    icon: <MapPin className="w-7 h-7 text-[#fca000]" />,
+    title: "Customer Profiles",
+    desc: "Add new borrowers, manage KYC, update references, and view repayment and audit history in one unified place.",
+    icon: <Users className="w-7 h-7 text-[#fca000]" />,
   },
   {
-    title: "Role-Based Access",
-    desc: "Each user type—Admin, Finance, Staff—gets tailored dashboards & access.",
-    icon: <ShieldCheck className="w-7 h-7 text-[#fca000]" />,
+    title: "Agent Coordination",
+    desc: "Assign agents to customers, track collections, and view field performance instantly with location-based oversight.",
+    icon: <ClipboardList className="w-7 h-7 text-[#fca000]" />,
   },
   {
-    title: "Finance Automation",
-    desc: "Track dues, reconcile payments, and automate financial logs.",
+    title: "Repayment Tracker",
+    desc: "Easily log EMI payments, send automated reminders, manage dues, and view complete transaction logs.",
     icon: <CreditCard className="w-7 h-7 text-[#fca000]" />,
   },
   {
-    title: "Bulk Upload & Processing",
-    desc: "Upload and process hundreds of parcels via Excel in one go.",
-    icon: <FileUp className="w-7 h-7 text-[#fca000]" />,
+    title: "Funds & Bank Ledger",
+    desc: "Track incoming and outgoing funds, manage multiple banks, and control internal transfers with accuracy.",
+    icon: <Banknote className="w-7 h-7 text-[#fca000]" />,
   },
   {
-    title: "Analytics & Reports",
-    desc: "Get insights into logistics and finances with customizable reports.",
-    icon: <BarChart2 className="w-7 h-7 text-[#fca000]" />,
+    title: "Organizational Borrowings",
+    desc: "Monitor loans taken by your company, manage repayments, and keep detailed loan audits for compliance.",
+    icon: <Building2 className="w-7 h-7 text-[#fca000]" />,
   },
 ];
 
 const stats = [
-  { label: "Happy Clients", value: "500+" },
-  { label: "Parcels Processed", value: "1.2M+" },
-  { label: "Finance Records", value: "950K+" },
-  { label: "Reports Generated", value: "30K+" },
+  { label: "Loans Disbursed", value: "12K+" },
+  { label: "EMIs Collected", value: "65K+" },
+  { label: "Agents Onboarded", value: "200+" },
+  { label: "Branches Managed", value: "50+" },
 ];
 
 const Home: React.FC = () => {
@@ -57,7 +57,7 @@ const Home: React.FC = () => {
       <div className="HomeBanner">
         <div className="HomeBannerOverlay flex items-center justify-center h-[350px] text-white">
           <h1 className="HomeBannerTitle text-4xl md:text-5xl font-bold uppercase underline">
-            {/* Welcome to Express Logistics ERP */}
+            Welcome to ZADPRO MicroFin
           </h1>
         </div>
       </div>
@@ -73,18 +73,23 @@ const Home: React.FC = () => {
               </span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#090a58] leading-tight">
-              Streamline Your Logistics & Finance with{" "}
-              <span className="text-[#fca000]">One Platform</span>
+              Powering Digital Microfinance with{" "}
+              <span className="text-[#fca000]">Full Control</span>
             </h2>
             <p className="text-gray-700 text-lg text-justify">
-              Our ERP system is purpose-built for courier and microfinance
-              businesses. We bring automation, real-time visibility, and
-              complete control across all operations—from parcel bookings to
-              payments, from employee access to reports.
+              ZADPRO MicroFin is a comprehensive loan management platform
+              tailored for microfinance institutions and individual lenders. We
+              bring automation, transparency, and accuracy across every aspect
+              of your loan lifecycle—from customer onboarding to final
+              repayments and reporting.
             </p>
           </div>
           <div data-aos="fade-left">
-            <img src={ERP} alt="ERP" className="w-full rounded-xl shadow-xl" />
+            <img
+              src={ERP}
+              alt="MicroFin ERP"
+              className="w-full rounded-xl shadow-xl"
+            />
           </div>
         </div>
       </section>
@@ -93,11 +98,11 @@ const Home: React.FC = () => {
       <section className="py-12 px-4 bg-white">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl font-bold uppercase text-[#fca000] mb-4 underline">
-            ERP Modules Highlights
+            MicroFin Modules Highlights
           </h2>
           <p className="text-gray-700 mb-10">
-            Discover the modules that make our ERP powerful, flexible, and
-            business-ready.
+            Explore our powerful modules built to streamline microfinance
+            operations end-to-end.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => (
@@ -134,12 +139,12 @@ const Home: React.FC = () => {
       {/* CTA Section */}
       <section className="bg-[#fca000] py-14 text-white text-center px-4">
         <h3 className="text-2xl md:text-3xl font-bold mb-4">
-          Ready to Transform Your Courier Business?
+          Ready to Digitize Your Lending Workflow?
         </h3>
         <p className="max-w-2xl mx-auto mb-6">
-          Join hundreds of businesses that trust Express Logistics ERP for their
-          daily operations. Get started today and streamline your workflows like
-          never before.
+          Join microfinance organizations and individual lenders already using
+          ZADPRO MicroFin to streamline their loan management operations with
+          confidence and speed.
         </p>
         <button className="bg-white text-[#fca000] font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition duration-300">
           Request a Demo
