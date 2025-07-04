@@ -11,16 +11,16 @@ import Glide from "@glidejs/glide";
 import "./About.css";
 
 const clientImages = [
-  coreBeleif,
-  coreBeleif,
-  coreBeleif,
-  coreBeleif,
-  coreBeleif,
-  coreBeleif,
-  coreBeleif,
-  coreBeleif,
-  coreBeleif,
-  coreBeleif,
+  { src: coreBeleif, name: "Client A" },
+  { src: coreBeleif, name: "Client B" },
+  { src: coreBeleif, name: "Client C" },
+  { src: coreBeleif, name: "Client D" },
+  { src: coreBeleif, name: "Client E" },
+  { src: coreBeleif, name: "Client F" },
+  { src: coreBeleif, name: "Client G" },
+  { src: coreBeleif, name: "Client H" },
+  { src: coreBeleif, name: "Client I" },
+  { src: coreBeleif, name: "Client J" },
 ];
 
 const About: React.FC = () => {
@@ -124,11 +124,11 @@ const About: React.FC = () => {
                 What started as a small team of tech experts has grown into a
                 trusted global IT solutions provider. With over a decade of
                 experience, we help businesses streamline operations, boost
-                productivity, and stay ahead with cutting-edge technology.
+                productivity, and stay ahead with cutting edge technology.
               </p>
               <p>
                 Driven by innovation and strong partnerships, our mission
-                remains the same—empowering businesses with future-ready
+                remains the same empowering businesses with future-ready
                 solutions.
               </p>
             </div>
@@ -147,8 +147,9 @@ const About: React.FC = () => {
               {clientImages.map((img, index) => (
                 <li key={index} className="px-4">
                   <img
-                    src={img}
-                    alt={`Client ${index + 1}`}
+                    src={img.src}
+                    alt={img.name}
+                    title={img.name} // This is the tooltip
                     className="m-auto h-30 max-h-full w-auto max-w-full"
                   />
                 </li>
@@ -221,7 +222,7 @@ const About: React.FC = () => {
             Our Team
           </h2>
           <p className="text-lg text-gray-600 mt-2">
-            Your vision, our technology — together, we build the future.
+            Your vision, our technology together, we build the future.
           </p>
         </div>
 
@@ -239,7 +240,7 @@ const About: React.FC = () => {
           {/* Text Block */}
           <div className="flex-1 w-full flex flex-col gap-4">
             <p className="text-3xl font-semibold text-[#111]">
-              Transforming challenges into opportunities with cutting-edge
+              Transforming challenges into opportunities with cutting edge
               digital solutions.
             </p>
             <p className="text-gray-700 leading-relaxed text-justify">
@@ -258,7 +259,7 @@ const About: React.FC = () => {
               <span className="font-medium">cybersecurity</span>, we craft
               solutions that drive efficiency, security, and success. Whether
               you’re a startup, SME, or enterprise, ZAdroit delivers the
-              cutting-edge technology solutions you need to stay ahead of the
+              cutting edge technology solutions you need to stay ahead of the
               competition.
             </p>
           </div>

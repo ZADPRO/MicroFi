@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/Image/Logo.png";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
@@ -37,15 +38,15 @@ const Header: React.FC = () => {
         >
           <div className="w-[80%] h-[10vh] lg:w-[93%] flex justify-evenly items-center">
             <div className="w-[50%] lg:w-[30%] flex justify-start">
-              {/* <img src={logo} className="w-[250px]" alt="log" /> */}
-              <h2 className="companyName font-bold cursor-pointer flex lg:flex-row flex-col lg:gap-2">
+              <img src={logo} className="w-[100px]" alt="log" />
+              {/* <h2 className="companyName font-bold cursor-pointer flex lg:flex-row flex-col lg:gap-2">
                 <span className="text-[#090a58] lg:text-[22px] text-[18px] tracking-wide">
                   ZAdPro{" "}
                 </span>
                 <span className="text-[#fca000] lg:text-[22px] text-[12px]">
                   Micro-Fi
                 </span>
-              </h2>
+              </h2> */}
             </div>
             <div className="hidden lg:flex w-[90%] justify-center gap-x-10">
               <div
@@ -108,9 +109,7 @@ const Header: React.FC = () => {
               </div>
             </div>
             <div className="w-[50%] lg:w-[10%] flex justify-end">
-              <p className="" style={{ cursor: "pointer" }}>
-                Icon
-              </p>{" "}
+              <img src="logo" alt="" />
             </div>
             <div className="w-[0%] ml-14 flex lg:hidden justify-center items-center">
               <button

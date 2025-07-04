@@ -20,6 +20,7 @@ import AdminHeader from "../pages/10-AdminHeader/AdminHeader";
 import AdminLogin from "../pages/11-AdminLogin/AdminLogin";
 import AdminBlogUpdate from "../pages/12-AdminBlogUpdate/AdminBlogUpdate";
 import AdminHome from "../pages/13-AdminHome/AdminHome";
+import SubBlogs from "../pages/04-Blogs/SubBlogs";
 
 const AppLayout: React.FC = () => {
   const location = useLocation();
@@ -39,6 +40,7 @@ const AppLayout: React.FC = () => {
         <Route path="/modules" element={<Modules />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/sublogs" element={<SubBlogs />} />
 
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />

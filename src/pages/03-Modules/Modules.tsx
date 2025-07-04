@@ -4,8 +4,9 @@ import "./Modules.css";
 import centerImage from "../../assets/modules/moduleOneCentere.png";
 import leftImage from "../../assets/modules/mobileOne.png";
 import rightImage from "../../assets/modules/mobileTwo.png";
+import { BsDot } from "react-icons/bs";
 
-// import Module001 from "../../assets/modules/001.jpg";
+import Module001 from "../../assets/modules/001.jpg";
 
 const Modules: React.FC = () => {
   return (
@@ -79,7 +80,7 @@ const Modules: React.FC = () => {
             {[
               {
                 title: "Admin Dashboard",
-                desc: "View real-time financial summaries including loan status, repayments, customer activity, and agent performance—all from one central control panel.",
+                desc: "View real-time financial summaries including loan status, repayments, customer activity, and agent performance all from one central control panel.",
                 icon: "📊",
               },
               {
@@ -148,7 +149,23 @@ const Modules: React.FC = () => {
         </div>
       </div>
 
-      {/* <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5">
+        <div className="py-12">
+          <div className="max-w-7xl mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold uppercase mb-4 underline text-[#fca000]">
+              Our Loan Types
+            </h2>
+            <p className="text-lg text-gray-700 mb-10">
+              At ZA Micro-FI, we offer flexible loan options to meet your
+              financial needs. Whether you’re looking for a simple repayment
+              structure or a loan that adjusts as you pay, we have the right
+              solution for you.
+            </p>
+            <h2 className="text-3xl font-bold uppercase mb-4 underline text-[#fca000]">
+              Loan Options We Offer
+            </h2>
+          </div>
+        </div>
         <div className="flex w-full md:w-10/12 mx-auto lg:flex-row flex-col p-4 gap-8">
           <div className="flex-1">
             <img src={Module001} alt="" />
@@ -163,14 +180,14 @@ const Modules: React.FC = () => {
                   paddingBottom: "2px",
                 }}
               >
-                <span className="text-[#fca000] font-bold">Role-Based </span>{" "}
-                Dashboard :
+                <span className="text-[#fca000] font-bold">1. </span>
+                Flat Loan
               </span>
             </div>
             <p className="text-[20px] text-justify">
-              Empower your team with tailored dashboards. Super Admin, Admin,
-              Finance, and Employees each get access to what they need — and
-              nothing they don't.{" "}
+              A flat loan comes with a fixed interest rate calculated on the
+              full loan amount, regardless of what you’ve already paid. The
+              repayment amount stays the same throughout the loan term.
             </p>
             <div className="flex items-center justify-start mb-2 mt-5">
               <span
@@ -181,36 +198,37 @@ const Modules: React.FC = () => {
                   paddingBottom: "2px",
                 }}
               >
-                <span className="text-[#fca000] font-bold">Parcel </span>
-                Booking:{" "}
+                <span className="text-[#fca000] font-bold">2. </span>
+                Diminishing Loan{" "}
               </span>
             </div>{" "}
             <p className="text-[20px] text-justify">
-              Book parcels with leading courier partners in just a few clicks.
-              Choose document/non-document types, walk-in vs regular users, and
-              auto-fill sender/receiver details.
+              In a diminishing loan, the interest is calculated on the remaining
+              balance. As you pay off your loan, the interest decreases, and
+              your monthly payment reduces over time.
+            </p>
+            <div className="flex items-center justify-start mb-2">
+              <span
+                className="text-[24px] font-semibold whitespace-nowrap uppercase"
+                style={{
+                  borderBottom: "3px solid #fca000",
+                  color: "#000000",
+                  paddingBottom: "2px",
+                }}
+              >
+                <span className="text-[#fca000] font-bold">3. </span> Instalment
+                Loan
+              </span>
+            </div>
+            <p className="text-[20px] text-justify">
+              An instalment loan allows you to borrow a fixed amount and repay
+              it over set periods in equal instalments. It’s perfect for
+              managing monthly budgets with predictable payments
             </p>
           </div>{" "}
         </div>
         <div className="flex w-full md:w-10/12 mx-auto lg:flex-row flex-col p-4 gap-8 mt-5">
           <div className="flex-1 gap-3 w-full flex flex-col justify-center">
-            <div className="flex items-center justify-start mb-2">
-              <span
-                className="text-[24px] font-semibold whitespace-nowrap uppercase"
-                style={{
-                  borderBottom: "3px solid #fca000",
-                  color: "#000000",
-                  paddingBottom: "2px",
-                }}
-              >
-                <span className="text-[#fca000] font-bold">Bulk </span> Parcel
-                Upload :
-              </span>
-            </div>
-            <p className="text-[20px] text-justify">
-              Upload bulk orders using Excel. Automatically detects duplicates
-              before submission and saves hours of manual entry.
-            </p>
             <div className="flex items-center justify-start mb-2 mt-5">
               <span
                 className="text-[24px] font-semibold whitespace-nowrap uppercase"
@@ -220,41 +238,13 @@ const Modules: React.FC = () => {
                   paddingBottom: "2px",
                 }}
               >
-                <span className="text-[#fca000] font-bold">Transaction </span>
-                Mapping:{" "}
+                <span className="text-[#fca000] font-bold">How Loans </span>
+                Work in ZA MicroFI :{" "}
               </span>
             </div>{" "}
             <p className="text-[20px] text-justify">
-              Map vendor purchases by uploading leaves. Prevents duplicates and
-              ensures traceable transaction history for compliance and audit.
-            </p>
-          </div>{" "}
-          <div className="flex-1">
-            <img src={Module001} alt="" />
-          </div>
-        </div>
-
-        <div className="flex w-full md:w-10/12 mx-auto lg:flex-row flex-col p-4 gap-8">
-          <div className="flex-1">
-            <img src={Module001} alt="" />
-          </div>
-          <div className="flex-1 gap-3 w-full flex flex-col justify-center">
-            <div className="flex items-center justify-start mb-2">
-              <span
-                className="text-[24px] font-semibold whitespace-nowrap uppercase"
-                style={{
-                  borderBottom: "3px solid #fca000",
-                  color: "#000000",
-                  paddingBottom: "2px",
-                }}
-              >
-                <span className="text-[#fca000] font-bold">Employee </span>{" "}
-                Management :
-              </span>
-            </div>
-            <p className="text-[20px] text-justify">
-              Onboard employees with ease. Assign roles, email credentials, and
-              track onboarding progress in one place.
+              We understand that in microfinance, flexibility is key. That’s why
+              we offer different loan options to support your evolving needs.
             </p>
             <div className="flex items-center justify-start mb-2 mt-5">
               <span
@@ -265,62 +255,42 @@ const Modules: React.FC = () => {
                   paddingBottom: "2px",
                 }}
               >
-                <span className="text-[#fca000] font-bold">
-                  Finance & Payment{" "}
+                <span className="text-[#fca000] font-bold">MicroFI Loan</span>
+                Options:{" "}
+              </span>
+            </div>{" "}
+            <p className="text-[20px] text-justify font-medium mb-2">
+              Loan Options:
+            </p>
+            <ul className="list-none space-y-2 text-[18px] text-justify text-gray-800">
+              <li className="flex items-start gap-1">
+                <BsDot className="text-[#fca000] font-bold text-2xl mt-1" />
+                <span>
+                  <strong>New Loan:</strong> Fresh funding for your immediate
+                  personal or business needs.
                 </span>
-                Tracking:{" "}
-              </span>
-            </div>{" "}
-            <p className="text-[20px] text-justify">
-              Manage customer balances, accept payments via GPay or cash, and
-              audit records with full transparency.
-            </p>
-          </div>{" "}
-        </div>
-        <div className="flex w-full md:w-10/12 mx-auto lg:flex-row flex-col p-4 gap-8 mt-5">
-          <div className="flex-1 gap-3 w-full flex flex-col justify-center">
-            <div className="flex items-center justify-start mb-2">
-              <span
-                className="text-[24px] font-semibold whitespace-nowrap uppercase"
-                style={{
-                  borderBottom: "3px solid #fca000",
-                  color: "#000000",
-                  paddingBottom: "2px",
-                }}
-              >
-                <span className="text-[#fca000] font-bold">
-                  Reports & Leaf{" "}
+              </li>
+              <li className="flex items-start gap-1">
+                <BsDot className="text-[#fca000] font-bold text-2xl mt-1" />
+                <span>
+                  <strong>Top-Up Loan:</strong> Additional funds provided on top
+                  of your existing loan when you need extra support.
                 </span>
-                Management :
-              </span>
-            </div>
-            <p className="text-[20px] text-justify">
-              Split leaves into subcategories, generate reports, and export them
-              for internal or client reviews.
-            </p>
-            <div className="flex items-center justify-start mb-2 mt-5">
-              <span
-                className="text-[24px] font-semibold whitespace-nowrap uppercase"
-                style={{
-                  borderBottom: "3px solid #fca000",
-                  color: "#000000",
-                  paddingBottom: "2px",
-                }}
-              >
-                <span className="text-[#fca000] font-bold">Custom </span>
-                Settings:{" "}
-              </span>
-            </div>{" "}
-            <p className="text-[20px] text-justify">
-              Configure pricing, categories, and courier partners per your
-              business model. Fully customizable for operational flexibility.
-            </p>
+              </li>
+              <li className="flex items-start gap-1 ">
+                <BsDot className="text-[#fca000] font-bold text-2xl mt-1" />
+                <span>
+                  <strong>Extension Loan:</strong> Extended repayment period if
+                  you need more time to settle your loan.
+                </span>
+              </li>
+            </ul>
           </div>{" "}
           <div className="flex-1">
             <img src={Module001} alt="" />
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

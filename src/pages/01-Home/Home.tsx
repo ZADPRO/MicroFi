@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import ERP from "../../assets/home/ERP.jpg";
 import "./Home.css";
+import { useNavigate } from "react-router-dom";
 
 const features = [
   {
@@ -51,14 +52,22 @@ const stats = [
 ];
 
 const Home: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/contact");
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 100); // small delay to allow route change
+  };
   return (
     <div className="bg-gray-50">
       {/* Hero Banner */}
       <div className="HomeBanner">
         <div className="HomeBannerOverlay flex items-center justify-center h-[350px] text-white">
-          <h1 className="HomeBannerTitle text-4xl md:text-5xl font-bold uppercase underline">
+          {/* <h1 className="HomeBannerTitle text-4xl md:text-5xl font-bold uppercase underline">
             Welcome to ZADPRO MicroFin
-          </h1>
+          </h1> */}
         </div>
       </div>
 
@@ -80,7 +89,7 @@ const Home: React.FC = () => {
               ZADPRO MicroFin is a comprehensive loan management platform
               tailored for microfinance institutions and individual lenders. We
               bring automation, transparency, and accuracy across every aspect
-              of your loan lifecycle—from customer onboarding to final
+              of your loan lifecycle from customer onboarding to final
               repayments and reporting.
             </p>
           </div>
@@ -123,7 +132,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-gray-100">
+      {/* <section className="py-12 bg-gray-100">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 text-center gap-8 px-4">
           {stats.map((stat, idx) => (
             <div key={idx}>
@@ -134,7 +143,92 @@ const Home: React.FC = () => {
             </div>
           ))}
         </div>
+      </section> */}
+
+      <section className="py-12 px-4 bg-white">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl font-bold uppercase text-[#fca000] mb-4 underline">
+            Loan
+          </h2>
+          <p className="text-gray-700 mb-10">
+            A loan is a financial agreement where one party (the lender) gives
+            money to another party (the borrower) with the promise that the
+            money will be repaid over time, usually with added interest. Loans
+            help individuals, businesses, and organizations access funds for
+            various purposes like buying a home, starting a business, education,
+            personal expenses, or emergencies
+          </p>
+        </div>
       </section>
+
+      <section className="py-12 px-4 bg-white">
+  <div className="max-w-2xl mx-auto">
+    <h2 className="text-3xl font-bold uppercase text-[#fca000] mb-6 text-center underline">
+      Feedback Form
+    </h2>
+
+    <form className="space-y-6">
+      {/* Name */}
+      <div>
+        <label className="block text-gray-700 font-medium mb-2">Name</label>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#fca000]"
+        />
+      </div>
+
+      {/* Email */}
+      <div>
+        <label className="block text-gray-700 font-medium mb-2">Email ID</label>
+        <input
+          type="email"
+          placeholder="Enter your email"
+          className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#fca000]"
+        />
+      </div>
+
+      {/* Rating */}
+      <div>
+        <label className="block text-gray-700 font-medium mb-2">Rating</label>
+        <div className="flex space-x-2">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span
+              key={star}
+              className="text-2xl text-gray-400 hover:text-yellow-500 cursor-pointer transition"
+            >
+              ★
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Review */}
+      <div>
+        <label className="block text-gray-700 font-medium mb-2">Review</label>
+        <textarea
+          rows={5}
+          placeholder="Write your feedback here..."
+          className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#fca000]"
+        ></textarea>
+      </div>
+
+      {/* Submit Button */}
+      <div className="text-center">
+        <button
+          type="submit"
+          className="bg-[#090a58] text-white font-semibold px-6 py-3 rounded-md hover:bg-[#e39600] transition"
+        >
+          Submit Feedback
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+
+
 
       {/* CTA Section */}
       <section className="bg-[#fca000] py-14 text-white text-center px-4">
@@ -146,7 +240,10 @@ const Home: React.FC = () => {
           ZADPRO MicroFin to streamline their loan management operations with
           confidence and speed.
         </p>
-        <button className="bg-white text-[#fca000] font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition duration-300">
+        <button
+          onClick={handleClick}
+          className="bg-white text-[#fca000] cursor-pointer font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition duration-300"
+        >
           Request a Demo
         </button>
       </section>
