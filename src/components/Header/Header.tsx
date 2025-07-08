@@ -28,7 +28,7 @@ const Header: React.FC = () => {
   return (
     <div>
       <div
-        className={`h-[75px] text-[15px] fixed inset-0 flex items-center justify-center shadow-xs backdrop-blur-md bg-white/30 border-b border-white/20 transition-colors duration-300`}
+        className={`h-[75px]  text-[15px]  fixed inset-0 flex items-center justify-center shadow-xs backdrop-blur-md bg-white/90 border-b border-white/20 transition-colors duration-300`}
         style={{ zIndex: "100" }}
       >
         <div
@@ -38,7 +38,15 @@ const Header: React.FC = () => {
         >
           <div className="w-[80%] h-[10vh] lg:w-[93%] flex justify-evenly items-center">
             <div className="w-[50%] lg:w-[30%] flex justify-start">
-              <img src={logo} className="w-[100px]" alt="log" />
+              <img
+                src={logo}
+                onClick={() => {
+                  handleNavigation("/");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="w-[100px] cursor-pointer"
+                alt="log"
+              />
               {/* <h2 className="companyName font-bold cursor-pointer flex lg:flex-row flex-col lg:gap-2">
                 <span className="text-[#090a58] lg:text-[22px] text-[18px] tracking-wide">
                   ZAdPro{" "}
@@ -53,9 +61,12 @@ const Header: React.FC = () => {
                 className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
                   scrolled
                     ? "text-black hover:text-[#090a58]"
-                    : "text-white hover:text-[#090a58]"
+                    : "text-[#fca000] hover:text-[#090a58]"
                 }`}
-                onClick={() => handleNavigation("/")}
+                onClick={() => {
+                  handleNavigation("/");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
               >
                 Home
               </div>
@@ -63,10 +74,11 @@ const Header: React.FC = () => {
                 className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
                   scrolled
                     ? "text-black hover:text-[#090a58]"
-                    : "text-white hover:text-[#090a58]"
+                    : "text-[#fca000] hover:text-[#090a58]"
                 }`}
                 onClick={() => {
                   handleNavigation("/about");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               >
                 About
@@ -75,10 +87,11 @@ const Header: React.FC = () => {
                 className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
                   scrolled
                     ? "text-black hover:text-[#090a58]"
-                    : "text-white hover:text-[#090a58]"
+                    : "text-[#fca000] hover:text-[#090a58]"
                 }`}
                 onClick={() => {
                   handleNavigation("/modules");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               >
                 Modules
@@ -87,10 +100,11 @@ const Header: React.FC = () => {
                 className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
                   scrolled
                     ? "text-black hover:text-[#090a58]"
-                    : "text-white hover:text-[#090a58]"
+                    : "text-[#fca000] hover:text-[#090a58]"
                 }`}
                 onClick={() => {
                   handleNavigation("/blogs");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               >
                 Blogs
@@ -99,10 +113,11 @@ const Header: React.FC = () => {
                 className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
                   scrolled
                     ? "text-black hover:text-[#090a58]"
-                    : "text-white hover:text-[#090a58]"
+                    : "text-[#fca000] hover:text-[#090a58]"
                 }`}
                 onClick={() => {
                   handleNavigation("/contact");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               >
                 Contact

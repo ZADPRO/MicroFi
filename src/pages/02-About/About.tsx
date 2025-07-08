@@ -1,73 +1,77 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-import developersImg from "../../assets/about/dev.jpg";
+import developersImg from "../../assets/about/dev1.jpg";
 import softwareImg from "../../assets/about/software.jpg";
-import coreBeleif from "../../assets/about/coreBeleif.png";
+import coreBeleif from "../../assets/about/core.jpg";
 
-import team from "../../assets/about/team.png";
+import team from "../../assets/about/Team.jpg";
 
 import Glide from "@glidejs/glide";
 
 import "./About.css";
-
-const clientImages = [
-  { src: coreBeleif, name: "Client A" },
-  { src: coreBeleif, name: "Client B" },
-  { src: coreBeleif, name: "Client C" },
-  { src: coreBeleif, name: "Client D" },
-  { src: coreBeleif, name: "Client E" },
-  { src: coreBeleif, name: "Client F" },
-  { src: coreBeleif, name: "Client G" },
-  { src: coreBeleif, name: "Client H" },
-  { src: coreBeleif, name: "Client I" },
-  { src: coreBeleif, name: "Client J" },
-];
+import axios from "axios";
+import { decryptAPIResponse } from "../../utils";
+import defaultimage from "../../assets/Image/default.jpg"
 
 const About: React.FC = () => {
+  const [products, setProducts] = useState<any[]>([]);
+
+  const fetchBlogs = () => {
+    axios
+      .get(import.meta.env.VITE_API_URL + "/UserRoutes/ourProducts", {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        const data = decryptAPIResponse(
+          response.data[1],
+          response.data[0],
+          import.meta.env.VITE_ENCRYPTION_KEY
+        );
+        console.log("data setBlogs------------>", data);
+
+        if (data.success === true) {
+          localStorage.setItem("token", "Bearer " + data.token);
+          console.log("setBlogs  --------->", data);
+          setProducts(data.productImage);
+        }
+      })
+      .catch((e) => {
+        console.log("Error fetching Blogs:", e);
+      });
+  };
   useEffect(() => {
-    const slider1 = new Glide(".glide-09", {
+    fetchBlogs();
+  }, []);
+
+  useEffect(() => {
+    if (!products?.length) return; // Ensure blogs are loaded
+    const glideContainer = document.querySelector(
+      ".glide-09"
+    ) as HTMLElement | null;
+
+    if (!glideContainer) return; // Prevent mounting before DOM is ready
+
+    const slider1 = new Glide(glideContainer, {
       type: "carousel",
       autoplay: 1,
       animationDuration: 2500,
       animationTimingFunc: "linear",
       perView: 3,
-      classes: {
-        swipeable: "glide__swipeable",
-        dragging: "glide__dragging",
-        direction: {
-          ltr: "glide__ltr",
-          rtl: "glide__rtl",
-        },
-        type: {
-          slider: "glide__slider",
-          carousel: "glide__carousel",
-        },
-        slide: {
-          active: "glide__slide--active",
-          clone: "glide__slide--clone",
-        },
-        arrow: {
-          disabled: "glide__arrow--disabled",
-        },
-        nav: {
-          active: "glide__nav--active",
-        },
-      },
       breakpoints: {
-        1024: {
-          perView: 2,
-        },
-        640: {
-          perView: 1,
-          gap: 36,
-        },
+        1024: { perView: 2 },
+        640: { perView: 1, gap: 36 },
       },
-    }).mount();
+    });
+
+    slider1.mount();
 
     return () => {
       slider1.destroy();
     };
-  }, []);
+  }, [products]);
 
   return (
     <div>
@@ -136,28 +140,41 @@ const About: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full md:w-10/12 mx-auto py-10">
-        <p className="text-center text-[25px] uppercase font-bold">
-          Our Clients
-        </p>
-        <div className="glide-09 relative w-full overflow-hidden py-6">
-          {/* Slides */}
-          <div data-glide-el="track">
-            <ul className="whitespace-no-wrap flex-no-wrap [backface-visibility:hidden] [transform-style:preserve-3d] [touch-action:pan-Y] [will-change:transform] relative flex w-full overflow-hidden p-0">
-              {clientImages.map((img, index) => (
-                <li key={index} className="px-4">
-                  <img
-                    src={img.src}
-                    alt={img.name}
-                    title={img.name} // This is the tooltip
-                    className="m-auto h-30 max-h-full w-auto max-w-full"
-                  />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
+    <div className="w-full md:w-10/12 mx-auto py-10">
+  <p className="text-center text-[25px] uppercase font-bold">
+    Our Products
+  </p>
+  <div className="glide-09 relative w-full overflow-hidden py-6">
+    <div data-glide-el="track">
+      <ul className="whitespace-no-wrap flex-no-wrap [backface-visibility:hidden] [transform-style:preserve-3d] [touch-action:pan-Y] [will-change:transform] relative flex w-full overflow-hidden p-0">
+        {products.map((product, index) => (
+          <li key={index} className="px-4 text-center">
+            <a
+              href={product.refProductLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              <img
+                src={
+                  product.signedImageUrl && product.signedImageUrl !== ""
+                    ? product.signedImageUrl
+                    : defaultimage
+                }
+                alt={product.refProductsName}
+                title={product.refProductsName}
+                className="m-auto max-h-full w-[200px] h-[200px] object-contain rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+              />
+              <p className="mt-2 font-medium text-sm text-black">
+                {product.refProductsName}
+              </p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>
 
       <div className="flex flex-col lg:flex-row max-w-7xl mx-auto gap-10 items-stretch p-6">
         {/* Left Content */}
@@ -258,8 +275,8 @@ const About: React.FC = () => {
               <span className="font-medium">AI</span>, and{" "}
               <span className="font-medium">cybersecurity</span>, we craft
               solutions that drive efficiency, security, and success. Whether
-              you’re a startup, SME, or enterprise, ZAdroit delivers the
-              cutting edge technology solutions you need to stay ahead of the
+              you’re a startup, SME, or enterprise, ZAdroit delivers the cutting
+              edge technology solutions you need to stay ahead of the
               competition.
             </p>
           </div>

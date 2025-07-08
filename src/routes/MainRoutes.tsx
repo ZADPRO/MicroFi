@@ -21,6 +21,10 @@ import AdminLogin from "../pages/11-AdminLogin/AdminLogin";
 import AdminBlogUpdate from "../pages/12-AdminBlogUpdate/AdminBlogUpdate";
 import AdminHome from "../pages/13-AdminHome/AdminHome";
 import SubBlogs from "../pages/04-Blogs/SubBlogs";
+import SubAchievements from "../pages/04-Blogs/SubAchievements";
+import FinalBlogs from "../pages/04-Blogs/FinalBlogs";
+import FinalAchievement from "../pages/04-Blogs/FinalAchievement";
+import UserReview from "../pages/05-UserReview/UserReview";
 
 const AppLayout: React.FC = () => {
   const location = useLocation();
@@ -41,6 +45,10 @@ const AppLayout: React.FC = () => {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/sublogs" element={<SubBlogs />} />
+        <Route path="/subachievement" element={<SubAchievements />} />
+        <Route path="/fullblogs" element={<FinalBlogs />} />
+        <Route path="/fullachievements" element={<FinalAchievement />} />
+        <Route path="/fulluserreview" element={<UserReview />} />
 
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />

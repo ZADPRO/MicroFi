@@ -1,5 +1,29 @@
 .BlogsBanner {
-  background-image: url("../../assets/blogs/blogBanner.jpg");
+  background-image: url("../../assets/blogs/Blog.jpg");
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.UserBanner {
+  background-image: url("../../assets/blogs/feedBack.jpg");
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.AchievementBanner {
+  background-image: url("../../assets/blogs/achievemnts.jpg");
   position: relative;
   background-position: center;
   background-repeat: no-repeat;

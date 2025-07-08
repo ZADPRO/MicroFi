@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  FaFacebookF,
-  FaLinkedinIn,
-  FaInstagram,
-  FaTwitter,
-} from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaEnvelope } from "react-icons/fa";
 
 const Footer: React.FC = () => {
   return (
@@ -13,46 +8,38 @@ const Footer: React.FC = () => {
         {/* Section 1 - Company Name + Description */}
         <div className="flex-2">
           <h2 className="text-2xl font-bold mb-4 text-[#fca000]">
-            EXPRESS LOGISTICS
+            ZA Micro-Fi
           </h2>
           <p className="text-sm text-gray-300 mb-4">
-            One Unified Platform to Book, Track, Manage, and Report Shipments
-            with Real-Time Finance and Employee Insights.
+            Your trusted partner in microfinance solutions. Secure. Reliable.
+            Empowering Financial Futures.
           </p>
 
           {/* Social Media Icons */}
           <div className="flex gap-4 mt-2">
             <a
-              href="https://www.facebook.com/"
+              href=" https://www.facebook.com/profile.php?id=61577915577"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-300 hover:text-[#fca000] transition text-lg"
             >
               <FaFacebookF />
             </a>
+
             <a
-              href="https://www.linkedin.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-[#fca000] transition text-lg"
-            >
-              <FaLinkedinIn />
-            </a>
-            <a
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/za_micro_fi/ "
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-300 hover:text-[#fca000] transition text-lg"
             >
               <FaInstagram />
             </a>
+            {/* Email */}
             <a
-              href="https://twitter.com/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:info@zadroit.com"
               className="text-gray-300 hover:text-[#fca000] transition text-lg"
             >
-              <FaTwitter />
+              <FaEnvelope />
             </a>
           </div>
         </div>
@@ -115,21 +102,13 @@ const Footer: React.FC = () => {
             <li>
               <span className="font-medium">Phone:</span> +968 97424232
             </li>
-            <li>
-              <span className="font-medium">Email:</span>{" "}
-              <a
-                href="mailto:expresslogistics@zadroit.com"
-                className="hover:text-[#fca000] transition"
-              >
-                expresslogistics@zadroit.com
-              </a>
-            </li>
+
             <li>
               <a
                 href="mailto:info@zadroit.com"
                 className="hover:text-[#fca000] transition"
               >
-                info@zadroit.com
+                <span className="font-medium">Email:</span>info@zadroit.com
               </a>
             </li>
             <li>

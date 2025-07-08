@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Blogs.css";
 
 import blogTemplateImg from "../../assets/blogs/blogTemplate.jpg";
 import { ShieldUser, Tags, TrendingUp } from "lucide-react";
+import axios from "axios";
+import { decryptAPIResponse } from "../../utils";
+
+import { useNavigate } from "react-router-dom";
 
 interface Blog {
   id: number;
@@ -47,6 +51,167 @@ const blogsData: Blog[] = [
 ];
 
 const Blogs: React.FC = () => {
+  const navigate = useNavigate();
+  const [blogs, setBlogss] = useState<any[]>([]);
+  const [achievements, setAchievements] = useState<any[]>([]);
+  const refProductName = import.meta.env.VITE_REF_PRODUCT_NAME;
+  const refProductsId = parseInt(import.meta.env.VITE_REF_PRODUCTS_ID); // if needed as number
+
+  const fetchBlogs = async () => {
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL + "/UserRoutes/listBlogs",
+        {
+          refProductsId,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = decryptAPIResponse(
+        response.data[1],
+        response.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+      console.log("API Response:", data);
+      console.log("data---------------?", data);
+      if (data.success === true) {
+        setBlogss(data.AllBlogs);
+      } else {
+        console.error("API update failed:", data);
+      }
+    } catch (e) {
+      console.error("Error updating package:", e);
+    }
+  };
+
+  const fetchAchievement = async () => {
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL + "/UserRoutes/listAchievements",
+        {
+          refProductsId,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = decryptAPIResponse(
+        response.data[1],
+        response.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+      console.log("API Response:", data);
+      console.log("setAchievements---------------?", data);
+      if (data.success === true) {
+        setAchievements(data.Achievements);
+      } else {
+        console.error("API update failed:", data);
+      }
+    } catch (e) {
+      console.error("Error updating package:", e);
+    }
+  };
+
+  // Function to extract first line from HTML content
+  const getFirstLineFromHTML = (htmlContent: string): string => {
+    // Remove HTML tags and get plain text
+    const plainText = htmlContent.replace(/<[^>]*>/g, "");
+    // Split by line breaks and get first line
+    const firstLine = plainText.split("\n")[0].trim();
+    return firstLine;
+  };
+
+  const handleAchievementReadMore = () => {
+    navigate(`/subachievement`);
+  };
+  const handleReadMore = () => {
+    navigate(`/sublogs`);
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+    fetchAchievement();
+  }, []);
+
+  const ReadMore = async (id: string) => {
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL + "/settingsRoutes/getBlogs",
+        {
+          refProductName: refProductName,
+          blogId: id,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = decryptAPIResponse(
+        response.data[1],
+        response.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+
+      if (data.success === true && Array.isArray(data.result)) {
+        // localStorage.setItem("token", "Bearer " + data.token);
+        const fullBlog = data.result[0];
+
+        navigate("/fullblogs", { state: { blogDetails: fullBlog } });
+      } else {
+        console.error("API fetch failed or invalid data:", data);
+      }
+    } catch (e) {
+      console.error("Error fetching blog details:", e);
+    }
+  };
+
+  const ReadAchievements = async (id: string) => {
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL + "/settingsRoutes/getAchivements",
+        {
+          refProductName: refProductName,
+          achievementId: id,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = decryptAPIResponse(
+        response.data[1],
+        response.data[0],
+        import.meta.env.VITE_ENCRYPTION_KEY
+      );
+
+      if (data.success === true && Array.isArray(data.result)) {
+        // localStorage.setItem("token", "Bearer " + data.token);
+        const fullachievements = data.result[0];
+
+        navigate("/fullachievements", { state: { achievementDetails: fullachievements } });
+      } else {
+        console.error("API fetch failed or invalid data:", data);
+      }
+    } catch (e) {
+      console.error("Error fetching blog details:", e);
+    }
+  };
+
   return (
     <div>
       <div className="BlogsBanner">
@@ -57,29 +222,24 @@ const Blogs: React.FC = () => {
 
       <div className="blogCards flex w-full align-items-center justify-content-center">
         <div className="flex w-full md:w-10/12 mx-auto lg:flex-row flex-col py-8 px-10 gap-10">
-          {blogsData.map((blog) => (
+          {blogs.slice(0, 3).map((blog) => (
             <div
-              key={blog.id}
-              className="cardTemplate flex flex-col flex-1 rounded-xl shadow-lg cursor-pointer"
+              key={blog.blogId}
+              onClick={() => ReadMore(blog.blogId)}
+              className="cardTemplate flex flex-col flex-1 rounded-xl shadow-lg cursor-pointer hover:shadow-2xl transition-shadow duration-300"
             >
-              <img src={blog.image} alt="blog-img" className="rounded-t-xl" />
+              <img
+                src={
+                  blog.signedImageUrl && blog.signedImageUrl !== ""
+                    ? blog.signedImageUrl
+                    : blogTemplateImg
+                }
+                alt="blog-img"
+                className="rounded-t-xl object-cover h-[250px] w-full"
+              />
               <div className="flex flex-col">
-                <div className="flex items-center justify-evenly my-3">
-                  <div className="flex flex-col items-center bg-[#101828] text-white font-bold p-4 rounded-xl">
-                    <p className="text-2xl">{blog.date}</p>
-                    <p>{blog.month}</p>
-                  </div>
-                  <div className="flex text-xl items-center gap-1">
-                    <ShieldUser />
-                    <p>{blog.author}</p>
-                  </div>
-                  <div className="flex text-xl items-center gap-1">
-                    <Tags />
-                    <p>{blog.tag}</p>
-                  </div>
-                </div>
-                <p className="font-bold text-lg px-4 py-2 line-clamp-2">
-                  {blog.title}
+                <p className="font-bold text-lg px-4 py-2 line-clamp-2 text-black">
+                  {blog.blogTitle}
                 </p>
                 <div className="text-center p-3 uppercase bg-blue-800 font-bold text-white rounded-b-xl flex items-center justify-center gap-3">
                   <p>Read More</p>
@@ -89,6 +249,15 @@ const Blogs: React.FC = () => {
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="text-center">
+        <button
+          onClick={handleReadMore}
+          className="bg-[#fdb500] text-white font-semibold px-6 py-3 rounded-md hover:bg-[#e39600] transition"
+        >
+          Read More
+        </button>
       </div>
 
       <section className="py-12 px-4 bg-white">
@@ -105,38 +274,38 @@ const Blogs: React.FC = () => {
 
         <div className="blogCards flex w-full align-items-center justify-content-center">
           <div className="flex w-full md:w-10/12 mx-auto lg:flex-row flex-col py-8 px-10 gap-10">
-            {blogsData.map((blog) => (
+            {achievements.slice(0, 3).map((achieve) => (
               <div
-                key={blog.id}
-                className="cardTemplate flex flex-col flex-1 rounded-xl shadow-lg cursor-pointer"
+                key={achieve.achievementId}
+                onClick={() => ReadAchievements(achieve.achievementId)}
+                className="cardTemplate flex flex-col flex-1 rounded-xl shadow-lg cursor-pointer hover:shadow-2xl transition-shadow duration-300"
               >
-                <img src={blog.image} alt="blog-img" className="rounded-t-xl" />
-                <div className="flex flex-col">
-                  <div className="flex items-center justify-evenly my-3">
-                    <div className="flex flex-col items-center bg-[#101828] text-white font-bold p-4 rounded-xl">
-                      <p className="text-2xl">{blog.date}</p>
-                      <p>{blog.month}</p>
-                    </div>
-                    <div className="flex text-xl items-center gap-1">
-                      <ShieldUser />
-                      <p>{blog.author}</p>
-                    </div>
-                    <div className="flex text-xl items-center gap-1">
-                      <Tags />
-                      <p>{blog.tag}</p>
-                    </div>
-                  </div>
-                  <p className="font-bold text-lg px-4 py-2 line-clamp-2">
-                    {blog.title}
+                <div className="flex flex-col p-4">
+                  <p className="font-bold text-lg mb-2 line-clamp-2 text-black">
+                    {achieve.achievementTitle}
                   </p>
-                  <div className="text-center p-3 uppercase bg-blue-800 font-bold text-white rounded-b-xl flex items-center justify-center gap-3">
-                    <p>Read More</p>
-                    <TrendingUp />
-                  </div>
+                  <p className="font-medium text-sm mb-2 text-gray-600">
+                    {achieve.achievedOn}
+                  </p>
+                  <p className="text-gray-700 mb-4 line-clamp-1">
+                    {getFirstLineFromHTML(achieve.achievementDescription)}
+                  </p>
+                </div>
+                <div className="text-center p-3 uppercase bg-blue-800 font-bold text-white rounded-b-xl flex items-center justify-center gap-3 cursor-pointer hover:bg-blue-900 transition-colors">
+                  <p>Read More</p>
+                  <TrendingUp />
                 </div>
               </div>
             ))}
           </div>
+        </div>
+        <div className="text-center">
+          <button
+            onClick={handleAchievementReadMore}
+            className="bg-[#fdb500] text-white font-semibold px-6 py-3 rounded-md hover:bg-[#e39600] transition"
+          >
+            Read More
+          </button>
         </div>
       </section>
     </div>
