@@ -1,7 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaFacebookF, FaInstagram, FaEnvelope } from "react-icons/fa";
+import { decryptAPIResponse } from "../../utils";
+import axios from "axios";
 
 const Footer: React.FC = () => {
+  const [products, setProducts] = useState<any[]>([]);
+
+  const fetchBlogs = () => {
+    axios
+      .get(import.meta.env.VITE_API_URL + "/UserRoutes/ourProducts", {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        const data = decryptAPIResponse(
+          response.data[1],
+          response.data[0],
+          import.meta.env.VITE_ENCRYPTION_KEY
+        );
+        console.log("data ourProducts------------>", data);
+
+        if (data.success === true) {
+          localStorage.setItem("token", "Bearer " + data.token);
+          console.log("ourProducts  --------->", data);
+          setProducts(data.productImage);
+        }
+      })
+      .catch((e) => {
+        console.log("Error fetching Blogs:", e);
+      });
+  };
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
   return (
     <footer className="bg-gray-900 text-white py-10 px-4">
       <div className="max-w-7xl mx-auto flex gap-8 lg:flex-row flex-col">
@@ -90,6 +124,30 @@ const Footer: React.FC = () => {
                 Contact
               </a>
             </li>
+          </ul>
+        </div>
+        <div className="flex-1">
+          <h3 className="text-xl font-semibold mb-4 text-[#fca000]">
+            Our Products
+          </h3>
+
+          <ul className="space-y-2 text-gray-300 text-sm">
+            {products && products.length > 0 ? (
+              products.map((product, index) => (
+                <li key={index}>
+                  <a
+                    href={product.refProductLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[#fca000] hover:font-semibold transition"
+                  >
+                    {product.refProductsName}
+                  </a>
+                </li>
+              ))
+            ) : (
+              <li className="text-gray-400">No products available</li>
+            )}
           </ul>
         </div>
 
