@@ -2,53 +2,53 @@ import React, { useEffect, useState } from "react";
 import "./Blogs.css";
 
 import blogTemplateImg from "../../assets/blogs/blogTemplate.jpg";
-import { ShieldUser, Tags, TrendingUp } from "lucide-react";
+import {  TrendingUp } from "lucide-react";
 import axios from "axios";
 import { decryptAPIResponse } from "../../utils";
 
 import { useNavigate } from "react-router-dom";
 
-interface Blog {
-  id: number;
-  date: string;
-  month: string;
-  author: string;
-  tag: string;
-  title: string;
-  image: string;
-}
+// interface Blog {
+//   id: number;
+//   date: string;
+//   month: string;
+//   author: string;
+//   tag: string;
+//   title: string;
+//   image: string;
+// }
 
-const blogsData: Blog[] = [
-  {
-    id: 1,
-    date: "29",
-    month: "June",
-    author: "Admin",
-    tag: "Tag",
-    title:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, deserunt veritatis!",
-    image: blogTemplateImg,
-  },
-  {
-    id: 2,
-    date: "30",
-    month: "June",
-    author: "Admin",
-    tag: "Fitness",
-    title:
-      "Alias aspernatur, perspiciatis incidunt recusandae dolorum consectetur culpa.",
-    image: blogTemplateImg,
-  },
-  {
-    id: 3,
-    date: "1",
-    month: "July",
-    author: "Admin",
-    tag: "Wellness",
-    title: "Inventore deleniti sed esse similique accusantium libero. Tempora?",
-    image: blogTemplateImg,
-  },
-];
+// const blogsData: Blog[] = [
+//   {
+//     id: 1,
+//     date: "29",
+//     month: "June",
+//     author: "Admin",
+//     tag: "Tag",
+//     title:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, deserunt veritatis!",
+//     image: blogTemplateImg,
+//   },
+//   {
+//     id: 2,
+//     date: "30",
+//     month: "June",
+//     author: "Admin",
+//     tag: "Fitness",
+//     title:
+//       "Alias aspernatur, perspiciatis incidunt recusandae dolorum consectetur culpa.",
+//     image: blogTemplateImg,
+//   },
+//   {
+//     id: 3,
+//     date: "1",
+//     month: "July",
+//     author: "Admin",
+//     tag: "Wellness",
+//     title: "Inventore deleniti sed esse similique accusantium libero. Tempora?",
+//     image: blogTemplateImg,
+//   },
+// ];
 
 const Blogs: React.FC = () => {
   const navigate = useNavigate();

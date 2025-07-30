@@ -8,14 +8,14 @@ import { BsDot } from "react-icons/bs";
 import axios from "axios";
 import { decryptAPIResponse } from "../../utils";
 
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Module001 from "../../assets/modules/001.jpg";
 import loan from "../../assets/modules/loan.jpg"
 
 const Modules: React.FC = () => {
   const [release, setRelease] = useState<any[]>([]);
-  const navigate = useNavigate();
-  const refProductName = import.meta.env.VITE_REF_PRODUCT_NAME;
+  // const navigate = useNavigate();
+  // const refProductName = import.meta.env.VITE_REF_PRODUCT_NAME;
   const refProductsId = parseInt(import.meta.env.VITE_REF_PRODUCTS_ID); // if needed as number
   const [expanded, setExpanded] = useState(false); // State inside map
 

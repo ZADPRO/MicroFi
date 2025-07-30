@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 
-import blogTemplateImg from "../../assets/blogs/blogTemplate.jpg";
-import { ShieldUser, Tags, TrendingUp } from "lucide-react";
+// import blogTemplateImg from "../../assets/blogs/blogTemplate.jpg";
+import { TrendingUp } from "lucide-react";
 import axios from "axios";
 import { decryptAPIResponse } from "../../utils";
 
 import { useNavigate } from "react-router-dom";
 
-interface BlogArray {
-  blogTitle: string;
-  blogContent: string;
-  blogImage: string;
-  blogId: string;
-  signedImageUrl: string;
-}
+// interface BlogArray {
+//   blogTitle: string;
+//   blogContent: string;
+//   blogImage: string;
+//   blogId: string;
+//   signedImageUrl: string;
+// }
 
 const SubAchievements: React.FC = () => {
   const [achievements, setAchievements] = useState<any[]>([]);
@@ -22,23 +22,23 @@ const SubAchievements: React.FC = () => {
   const refProductName = import.meta.env.VITE_REF_PRODUCT_NAME;
   const refProductsId = parseInt(import.meta.env.VITE_REF_PRODUCTS_ID); // if needed as number
 
-  const fadeUpVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 1, ease: "easeOut" as const },
-    },
-  };
+  // const fadeUpVariants = {
+  //   hidden: { opacity: 0, y: 50 },
+  //   visible: {
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: { duration: 1, ease: "easeOut" as const },
+  //   },
+  // };
 
-  const slideInVariants = {
-    hidden: { opacity: 0, x: -100 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 1, ease: "easeOut" as const },
-    },
-  };
+  // const slideInVariants = {
+  //   hidden: { opacity: 0, x: -100 },
+  //   visible: {
+  //     opacity: 1,
+  //     x: 0,
+  //     transition: { duration: 1, ease: "easeOut" as const },
+  //   },
+  // };
 
   const fetchAchievement = async () => {
     try {

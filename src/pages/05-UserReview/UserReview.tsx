@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import blogTemplateImg from "../../assets/blogs/blogTemplate.jpg";
-import { ShieldUser, Tags, TrendingUp } from "lucide-react";
+// import blogTemplateImg from "../../assets/blogs/blogTemplate.jpg";
+// import { ShieldUser, Tags, TrendingUp } from "lucide-react";
 import axios from "axios";
 import { decryptAPIResponse } from "../../utils";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 
 const UserReview: React.FC = () => {
   const [reviews, setReviews] = useState<any[]>([]);
-  const navigate = useNavigate();
-  const refProductName = import.meta.env.VITE_REF_PRODUCT_NAME;
+  // const navigate = useNavigate();
+  // const refProductName = import.meta.env.VITE_REF_PRODUCT_NAME;
   const refProductsId = parseInt(import.meta.env.VITE_REF_PRODUCTS_ID); // if needed as number
 
   const fetchReview = async () => {
@@ -51,9 +51,7 @@ const UserReview: React.FC = () => {
     <div>
       <div className="UserBanner">
         <div className="BlogsBannerOverlay">
-          <h1 className="BlogsBannerTitle uppercase underline">
-            User Reviews
-          </h1>
+          <h1 className="BlogsBannerTitle uppercase underline">User Reviews</h1>
         </div>
       </div>
 
